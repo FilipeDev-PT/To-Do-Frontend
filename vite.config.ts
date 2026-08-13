@@ -8,7 +8,12 @@ import tailwindcss from '@tailwindcss/vite'
 const rootDir = path.dirname(fileURLToPath(import.meta.url))
 const QA_API = 'https://to-do-backend-c6t5.onrender.com'
 
-export default defineConfig({
+// Repo name on GitHub Pages: https://<user>.github.io/To-Do-Frontend/
+const GH_PAGES_BASE = '/To-Do-Frontend/'
+
+export default defineConfig(({ command }) => ({
+  // Production build is served under the repo path on GitHub Pages
+  base: command === 'build' ? GH_PAGES_BASE : '/',
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -46,4 +51,5 @@ export default defineConfig({
       },
     },
   },
-})
+}))
+

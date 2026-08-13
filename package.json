@@ -8,6 +8,7 @@
     "dev:development": "vite --mode development",
     "dev:e2e": "vite --mode e2e --host 127.0.0.1 --port 5174 --strictPort",
     "build": "tsc -b && vite build",
+    "postbuild": "node --input-type=module -e \"import { copyFileSync } from 'node:fs'; copyFileSync('dist/index.html', 'dist/404.html')\"",
     "lint": "oxlint",
     "preview": "vite preview",
     "test": "vitest run",
